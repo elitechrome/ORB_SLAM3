@@ -26,11 +26,11 @@ if(MSVC90)
 endif(MSVC90)
 
 # Set the output directory for the build executables and libraries
-set(G2O_RUNTIME_OUTPUT_DIRECTORY ${G2O_SOURCE_DIR}/bin CACHE PATH "Target for the binaries")
+set(G2O_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin CACHE PATH "Target for the binaries")
 IF(WIN32)
-  SET(G2O_LIBRARY_OUTPUT_DIRECTORY ${G2O_SOURCE_DIR}/bin CACHE PATH "Target for the libraries")
+  SET(G2O_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin CACHE PATH "Target for the libraries")
 ELSE(WIN32)
-  SET(G2O_LIBRARY_OUTPUT_DIRECTORY ${G2O_SOURCE_DIR}/lib CACHE PATH "Target for the libraries")
+  SET(G2O_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib CACHE PATH "Target for the libraries")
 ENDIF(WIN32)
 SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${G2O_LIBRARY_OUTPUT_DIRECTORY})
 SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${G2O_LIBRARY_OUTPUT_DIRECTORY})
@@ -38,7 +38,7 @@ SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${G2O_RUNTIME_OUTPUT_DIRECTORY})
 
 # Set search directory for looking for our custom CMake scripts to
 # look for SuiteSparse, QGLViewer, and Eigen3.
-LIST(APPEND CMAKE_MODULE_PATH ${G2O_SOURCE_DIR}/cmake_modules)
+LIST(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_modules)
 
 
 # Detect OS and define macros appropriately
@@ -104,13 +104,13 @@ ENDIF(EIGEN3_FOUND)
 
 # Generate config.h
 SET(G2O_CXX_COMPILER "${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER}")
-configure_file(config.h.in ${G2O_SOURCE_DIR}/config.h)
+configure_file(config.h.in ${CMAKE_SOURCE_DIR}/config.h)
 
 # Set up the top-level include directories
 INCLUDE_DIRECTORIES(
-${G2O_SOURCE_DIR}/core
-${G2O_SOURCE_DIR}/types
-${G2O_SOURCE_DIR}/stuff
+${CMAKE_SOURCE_DIR}/core
+${CMAKE_SOURCE_DIR}/types
+${CMAKE_SOURCE_DIR}/stuff
 ${G2O_EIGEN3_INCLUDE})
 
 # Include the subdirectories
